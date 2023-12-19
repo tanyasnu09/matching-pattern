@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <string.h>
+
+int isMatch(const char* A, const char* B) {
+    int m = strlen(B);
+    int n = strlen(A);
+    int count = 0, sum = 0;
+
+    // First loop
+    for (int i = 0; i < m; i++) {
+        count ++;
+    }
+
+    // Second loop
+    for (int j = 0; j < n; j++) {
+        if (B[j] == '*') {
+            int d = m - sum;
+            sum += d;
+        }
+        else{
+           sum++; 
+        }
+    }
+
+    // Check if sum equals count
+    if (sum == count) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+int main() {
+    const char a[] = "ab";
+    const char b[] = "b*";
+
+    int result = isMatch(a, b);
+
+    if (result == 1) {
+        printf("Arrays match.\n");
+    } else {
+        printf("Arrays do not match.\n");
+    }
+
+    return 0;
+}
